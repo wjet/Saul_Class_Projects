@@ -4,7 +4,7 @@ import java.util.Properties
 
 import edu.illinois.cs.cogcomp.core.datastructures.textannotation._
 import edu.illinois.cs.cogcomp.nlp.common.PipelineConfigurator._
-import edu.illinois.cs.cogcomp.saulexamples.nlp.SpatialRoleLabeling.SpRL2013.{SpRL2013Document, TRAJECTOR}
+import edu.illinois.cs.cogcomp.saulexamples.nlp.SpatialRoleLabeling.SpRL2013.SpRL2013Document
 import edu.illinois.cs.cogcomp.saulexamples.nlp.SpatialRoleLabeling.{SpRLAnnotation, SpRLDataReader}
 import edu.illinois.cs.cogcomp.saulexamples.nlp.TextAnnotationFactory
 
@@ -19,8 +19,10 @@ object PopulateSpRLDataModel {
     SpRLDataModel.sentences.populate(readSpRLDocuments(), train = isTrain)
 
     def readSpRLDocuments(): List[Sentence] = {
-      val path = if (isTrain) "data/SpRL/2013/IAPR TC-12/train"
-      else "data/SpRL/2013/IAPR TC-12/gold"
+      val path = if (isTrain)
+        "data/IAPR TC-12/gold"
+      else  "data/IAPR TC-12/train"
+
 
       //YOUR EXAMPLE
       val reader = new SpRLDataReader(path, classOf[SpRL2013Document])

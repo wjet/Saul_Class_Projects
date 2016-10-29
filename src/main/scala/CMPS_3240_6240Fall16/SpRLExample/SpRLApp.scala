@@ -2,10 +2,8 @@ package CMPS_3240_6240Fall16.SpRLExample
 import java.io.File
 
 import edu.illinois.cs.cogcomp.core.datastructures.textannotation.Constituent
-import edu.illinois.cs.cogcomp.core.utilities.configuration.ResourceManager
 import edu.illinois.cs.cogcomp.saul.classifier.Learnable
 import edu.illinois.cs.cogcomp.saul.util.Logging
-import edu.illinois.cs.cogcomp.saulexamples.nlp.SpatialRoleLabeling.SpRLConfigurator
 
 /** Created by Parisa on 7/29/16.
   */
@@ -13,8 +11,8 @@ object SpRLApp extends App with Logging {
   import SpRLClassifiers._
   import SpRLDataModel._
 
-  val modelDir = "models/sprl/"
-  val isTrain = false
+  val modelDir = "models/"
+  val isTrain = true
 
   logger.info("population starts.")
 
