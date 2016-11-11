@@ -1,0 +1,21 @@
+package CMPS_3240_6240Fall16
+
+import edu.illinois.cs.cogcomp.lbjava.learn.SupportVectorMachine
+
+import edu.illinois.cs.cogcomp.saul.classifier.Learnable
+
+import CMPS_3240_6240Fall16.WilsonPeter.MRSentimentDataModel._
+
+
+
+object MRSentimentClassifiers{
+  object MRSentimentClassifier extends Learnable(review) {
+
+    def label = positivityLabel
+
+    override lazy val classifier = new SupportVectorMachine()
+
+    override def feature = using(words, bigrams)
+
+  }
+}
