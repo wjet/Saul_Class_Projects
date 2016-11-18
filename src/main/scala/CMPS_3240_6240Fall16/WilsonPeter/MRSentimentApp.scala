@@ -3,7 +3,7 @@ import edu.illinois.cs.cogcomp.saul.util.Logging
 import edu.illinois.cs.cogcomp.saulexamples.data.DocumentReader
 import CMPS_3240_6240Fall16.WilsonPeter.MRSentimentDataModel._
 import CMPS_3240_6240Fall16.WilsonPeter.MRSentimentClassifiers._
-
+import CMPS_3240_6240Fall16.WilsonPeter.Reader
 import scala.collection.JavaConversions._
 /**
   * Created by wilso on 11/11/2016.
@@ -13,7 +13,7 @@ object MRSentimentApp extends Logging{
   val trainData = new DocumentReader("data/peterriser/train").docs.toList
   val testData = new DocumentReader("data/peterriser/test").docs.toList
 
-  object MRSentimentkjExperimentType extends Enumeration {
+  object MRSentimentExperimentType extends Enumeration {
 
     val TrainAndTest, CacheGraph, TestUsingGraphCache, TestSerialization = Value
 
