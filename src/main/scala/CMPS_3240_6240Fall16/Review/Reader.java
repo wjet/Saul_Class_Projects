@@ -6,19 +6,15 @@
  *
  */
 
-package Readers;
-import com.sun.org.apache.xalan.internal.xsltc.dom.ArrayNodeListIterator;
-import com.sun.org.apache.xalan.internal.xsltc.dom.DocumentCache;
+package CMPS_3240_6240Fall16.Review;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;
-import Readers.Document;
 
 /**
  * Created by peterhriser on 10/4/16.
@@ -174,7 +170,7 @@ public class Reader {
             String index = Integer.toString(i);
 
             try {
-                File newFile = new File("./data/peterriser/" + index + ".txt");
+                File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/Review/Data/" + index + ".txt");
                 Document newDoc = new Document( newFile , label);
                 docs.add(newDoc);
             }

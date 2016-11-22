@@ -1,5 +1,6 @@
 package Readers;
 
+import CMPS_3240_6240Fall16.Review.Document;
 import edu.illinois.cs.cogcomp.lbjava.parse.Parser;
 
 import java.io.File;

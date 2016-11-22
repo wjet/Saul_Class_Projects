@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Readers;
+package CMPS_3240_6240Fall16.Review;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 /**
- * @author Vivek Srikumar
+ * @author Peter Riser
  * 
  */
 public class Document {
@@ -20,6 +20,7 @@ public class Document {
 	private final List<String> words;
 	private String guid;
 	public List<String> buzzwords= Arrays.asList("rating", "percent", "grade");
+    public List<String> buzzOwned;
 
 	/**
 	 * Create a new document
@@ -39,6 +40,9 @@ public class Document {
 				if (word.length() > 2) {
 					words.add(word.trim());
 				}
+				else if (buzzwords.contains(word)){
+                    buzzOwned.add(word.trim());
+                }
 			}
 
 			}
@@ -76,8 +80,9 @@ public class Document {
 	public List<String> getWords() {
 		return Collections.unmodifiableList(words);
 	}
+    public List<String> getBuzzwords(){return Collections.unmodifiableList(buzzOwned);}
 
-	@Override
+    @Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return label + ", " + words;

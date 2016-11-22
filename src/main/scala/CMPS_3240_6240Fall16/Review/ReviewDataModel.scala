@@ -1,11 +1,10 @@
-package CMPS_3240_6240Fall16.EmailSpam
+package CMPS_3240_6240Fall16.Review
 
 import edu.illinois.cs.cogcomp.saul.datamodel.DataModel
-import Readers.Document
 
 import scala.collection.JavaConversions._
 
-object SpamDataModel extends DataModel {
+object ReviewDataModel extends DataModel {
   val docs = node[Document]
 
   val wordFeature = property(docs, "wordF") {
@@ -28,14 +27,16 @@ object SpamDataModel extends DataModel {
 
       words.sliding(3).map(_.mkString("-")).toList
   }
-
- /** val ratingFeature = property(docs,"rating"){
+//WITH NEW FEATURE
+ val ratingFeature = property(docs,"rating"){
     x : Document =>
-      val words = x.getWords.toList
+      val buzzOwned = x.getBuzzwords.toList
 
+       buzzOwned.sliding(2).map(_.mkString("-")).toList
       //working on feature for list
-  }**/
-  val spamLabel = property(docs, "label") {
+
+  }
+  val ReviewLabel = property(docs, "label") {
     x: Document => x.getLabel
   }
 }
