@@ -6,15 +6,19 @@ import edu.illinois.cs.cogcomp.saul.util.Logging
 import scala.collection.JavaConversions._
 
 object ReviewApp extends Logging {
-  val starta = 0
-  val enda = 1
-  val startb = 2
-  val endb = 3
-  val trainDataGood = new Reader(starta,starta,"GOOD").docs.toList
-  val trainDataBad = new Reader(enda,enda,"BAD").docs.toList
+  val startTrainGood = 0
+  val startTrainBad = 28
+  val endTrainGood = 13
+  val endTrainBad =42
+  val startTestGood = 14
+  val startTestBad = 43
+  val endTestGood = 28
+  val endTestBad = 56
+  val trainDataGood = new Reader(startTrainGood,endTrainGood,"GOOD").docs.toList
+  val trainDataBad = new Reader(startTrainBad,endTrainBad,"BAD").docs.toList
   val trainData = trainDataGood ++ trainDataBad
-  val testDataGood = new Reader(startb,startb, "GOOD").docs.toList
-  val testDataBad = new Reader(endb,endb,"BAD").docs.toList
+  val testDataGood = new Reader(startTestGood,endTestGood, "GOOD").docs.toList
+  val testDataBad = new Reader(startTestBad,endTestBad,"BAD").docs.toList
   val testData = testDataGood ++ testDataBad
 
   object ReviewExperimentType extends Enumeration {
