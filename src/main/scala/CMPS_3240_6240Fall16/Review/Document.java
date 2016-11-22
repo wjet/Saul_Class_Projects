@@ -19,8 +19,8 @@ public class Document {
 	private final String label;
 	private final List<String> words;
 	private String guid;
-	public List<String> buzzwords= Arrays.asList("rating", "percent", "grade");
-    public List<String> buzzOwned;
+	private final  List<String> buzzwords= Arrays.asList("rating", "percent", "grade");
+    private final  List<String> buzzOwned = new ArrayList<>();
 
 	/**
 	 * Create a new document

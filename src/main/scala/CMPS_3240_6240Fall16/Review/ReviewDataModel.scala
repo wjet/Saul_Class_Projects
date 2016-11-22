@@ -28,7 +28,7 @@ object ReviewDataModel extends DataModel {
       words.sliding(3).map(_.mkString("-")).toList
   }
 //WITH NEW FEATURE
- val ratingFeature = property(docs,"rating"){
+ val ratingFeature = property(docs,"buzzOwned"){
     x : Document =>
       val buzzOwned = x.getBuzzwords.toList
 

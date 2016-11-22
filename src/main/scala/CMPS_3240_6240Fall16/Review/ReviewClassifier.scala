@@ -12,19 +12,19 @@ object ReviewClassifiers {
   object ReviewClassifier extends Learnable[Document](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SupportVectorMachine()
-    override def feature = using(wordFeature, bigramFeature, trigramFeature)
+    override def feature = using(wordFeature, bigramFeature, trigramFeature,ratingFeature)
   }
 
   object ReviewClassifierWithCache extends Learnable[Document](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SupportVectorMachine()
-    override def feature = using(wordFeature, bigramFeature, trigramFeature)
+    override def feature = using(wordFeature, bigramFeature, trigramFeature, ratingFeature)
     override val useCache = true
   }
 
   object DeserializedReviewClassifier extends Learnable[Document](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SupportVectorMachine()
-    override def feature = using(wordFeature, bigramFeature, trigramFeature)
+    override def feature = using(wordFeature, bigramFeature, trigramFeature, ratingFeature)
   }
 }
