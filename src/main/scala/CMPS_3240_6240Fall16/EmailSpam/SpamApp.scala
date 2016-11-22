@@ -7,9 +7,16 @@ import edu.illinois.cs.cogcomp.saul.util.Logging
 import scala.collection.JavaConversions._
 
 object SpamApp extends Logging {
-
-  val trainData = new DocumentReader("../data/EmailSpam/train").docs.toList
-  val testData = new DocumentReader("../data/EmailSpam/test").docs.toList
+  val starta = 0
+  val enda = 1
+  val startb = 2
+  val endb = 3
+  val trainDataGood = new Reader(starta,starta,"GOOD").docs.toList
+  val trainDataBad = new Reader(enda,enda,"BAD").docs.toList
+  val trainData = trainDataGood ++ trainDataBad
+  val testDataGood = new Reader(startb,startb, "GOOD").docs.toList
+  val testDataBad = new Reader(endb,endb,"BAD").docs.toList
+  val testData = testDataGood ++ testDataBad
 
   object SpamExperimentType extends Enumeration {
     val TrainAndTest, CacheGraph, TestUsingGraphCache, TestSerialization = Value
@@ -17,7 +24,7 @@ object SpamApp extends Logging {
 
   def main(args: Array[String]): Unit = {
     /** Choose the experiment you're interested in by changing the following line */
-    val testType = SpamExperimentType.TestSerialization
+    val testType = SpamExperimentType.TrainAndTest
 
     testType match {
       case SpamExperimentType.TrainAndTest => TrainAndTestSpamClassifier()
@@ -25,6 +32,7 @@ object SpamApp extends Logging {
       case SpamExperimentType.TestUsingGraphCache => SpamClassifierFromCache()
       case SpamExperimentType.TestSerialization => SpamClassifierWithSerialization()
     }
+
   }
 
   /** A standard method for testing the Spam Classification problem. Simply training and testing the resulting model.*/
@@ -35,7 +43,7 @@ object SpamApp extends Logging {
     SpamClassifier.test(testData)
   }
 
-  /** Spam Classifcation, followed by caching the data-model graph. */
+  /** Spam Classifcation, followd by caching the data-model graph. */
   val graphCacheFile = "models/temp.model"
   def SpamClassifierWithGraphCache(): Unit = {
     /** Defining the data and specifying it's location  */

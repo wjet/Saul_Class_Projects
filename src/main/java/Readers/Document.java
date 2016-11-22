@@ -7,9 +7,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * @author Vivek Srikumar
@@ -20,6 +19,7 @@ public class Document {
 	private final String label;
 	private final List<String> words;
 	private String guid;
+	public List<String> buzzwords= Arrays.asList("rating", "percent", "grade");
 
 	/**
 	 * Create a new document
@@ -32,10 +32,16 @@ public class Document {
         this.guid=file.getName();
 		words = new ArrayList<>();
 		String line;
+
+
 		while ((line = reader.readLine()) != null) {
-			for (String word : line.split("\\s+"))
-				words.add(word.trim());
-		}
+			for (String word : line.split("\\s+")) {
+				if (word.length() > 2) {
+					words.add(word.trim());
+				}
+			}
+
+			}
 
 		reader.close();
 	}
