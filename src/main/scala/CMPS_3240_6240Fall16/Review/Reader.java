@@ -170,7 +170,7 @@ public class Reader {
             String index = Integer.toString(i);
 
             try {
-                File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/Review/Data/" + index + ".txt");
+                File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/Review/Data2/" + index + ".txt");
                 Document newDoc = new Document( newFile , label);
                 docs.add(newDoc);
             }

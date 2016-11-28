@@ -10,10 +10,10 @@ object ReviewApp extends Logging {
   val startTrainBad = 28
   val endTrainGood = 13
   val endTrainBad =42
-  val startTestGood = 14
-  val startTestBad = 43
+  val startTestGood = 13
+  val startTestBad = 42
   val endTestGood = 28
-  val endTestBad = 56
+  val endTestBad = 57
   val trainDataGood = new Reader(startTrainGood,endTrainGood,"GOOD").docs.toList
   val trainDataBad = new Reader(startTrainBad,endTrainBad,"BAD").docs.toList
   val trainData = trainDataGood ++ trainDataBad

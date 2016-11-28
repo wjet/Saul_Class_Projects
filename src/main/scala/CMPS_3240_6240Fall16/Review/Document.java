@@ -19,9 +19,9 @@ public class Document {
 	private final String label;
 	private final List<String> words;
 	private String guid;
-	private final  List<String> buzzwords= Arrays.asList("rating", "percent", "grade");
+	private final  List<String> buzzwords= Arrays.asList("rating", "percent", "grade", "stars");
     private final  List<String> buzzOwned = new ArrayList<>();
-
+	private String grade = "";
 	/**
 	 * Create a new document
 	 * 
@@ -34,19 +34,28 @@ public class Document {
 		words = new ArrayList<>();
 		String line;
 
+		int isGrade = 0;
 
 		while ((line = reader.readLine()) != null) {
 			for (String word : line.split("\\s+")) {
+
 				if (word.length() > 2) {
 					words.add(word.trim());
 				}
-				else if (buzzwords.contains(word)){
-                    buzzOwned.add(word.trim());
+				if (buzzwords.contains(word)){
+                    isGrade = 1;
                 }
-			}
+				else if (isGrade == 1){
+					buzzOwned.add(word);
+					isGrade = 0;
+				}
 
 			}
 
+			}
+		if (!buzzOwned.isEmpty()){
+			grade = buzzOwned.get(0);
+		}
 		reader.close();
 	}
 
@@ -81,7 +90,9 @@ public class Document {
 		return Collections.unmodifiableList(words);
 	}
     public List<String> getBuzzwords(){return Collections.unmodifiableList(buzzOwned);}
-
+	public String getGrade() {
+		return grade;
+	}
     @Override
 	public String toString() {
 		// TODO Auto-generated method stub
