@@ -6,14 +6,14 @@ import edu.illinois.cs.cogcomp.saul.util.Logging
 import scala.collection.JavaConversions._
 
 object ReviewApp extends Logging {
-  val startTrainGood = 0
-  val startTrainBad = 28
-  val endTrainGood = 13
-  val endTrainBad =42
-  val startTestGood = 13
-  val startTestBad = 42
-  val endTestGood = 28
-  val endTestBad = 57
+  val startTrainGood = 1
+  val startTrainBad = 101
+  val endTrainGood = 51
+  val endTrainBad =151
+  val startTestGood = 51
+  val startTestBad = 151
+  val endTestGood = 101
+  val endTestBad = 201
   val trainDataGood = new Reader(startTrainGood,endTrainGood,"GOOD").docs.toList
   val trainDataBad = new Reader(startTrainBad,endTrainBad,"BAD").docs.toList
   val trainData = trainDataGood ++ trainDataBad
@@ -42,7 +42,7 @@ object ReviewApp extends Logging {
   def TrainAndTestReviewClassifier(): Unit = {
     /** Defining the data and specifying it's location  */
     ReviewDataModel.docs populate trainData
-    ReviewClassifier.learn(30)
+    ReviewClassifier.learn(500)
     ReviewClassifier.test(testData)
   }
 
@@ -63,7 +63,7 @@ object ReviewApp extends Logging {
     */
   def ReviewClassifierFromCache() {
     ReviewDataModel.load(graphCacheFile)
-    ReviewClassifierWithCache.learn(30)
+    ReviewClassifierWithCache.learn(500)
 
     ReviewClassifierWithCache.test(testData)
   }
@@ -74,7 +74,7 @@ object ReviewApp extends Logging {
     */
   def ReviewClassifierWithSerialization(): Unit = {
     ReviewDataModel.docs populate trainData
-    ReviewClassifier.learn(30)
+    ReviewClassifier.learn(500)
     ReviewClassifier.save()
     DeserializedReviewClassifier.load(ReviewClassifier.lcFilePath, ReviewClassifier.lexFilePath)
     val predictionsBeforeSerialization = testData.map(ReviewClassifier(_))

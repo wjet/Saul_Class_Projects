@@ -12,19 +12,19 @@ object ReviewClassifiers {
   object ReviewClassifier extends Learnable[MovieDocument](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SparseNetworkLearner()
-    override def feature = using( wordFeature, bigramFeature,ratingFeature,QuadgramFeature,dictionaryFeature)
+    override def feature = using( wordFeature, bigramFeature, trigramFeature, ratingFeature,QuadgramFeature,dictionaryFeature)
   }
 
   object ReviewClassifierWithCache extends Learnable[MovieDocument](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SparseNetworkLearner()
-    override def feature = using(wordFeature, bigramFeature,ratingFeature,QuadgramFeature,dictionaryFeature)
+    override def feature = using( wordFeature, bigramFeature, trigramFeature, ratingFeature,QuadgramFeature,dictionaryFeature)
     override val useCache = true
   }
 
   object DeserializedReviewClassifier extends Learnable[MovieDocument](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SparseNetworkLearner()
-    override def feature = using(wordFeature, bigramFeature,QuadgramFeature,ratingFeature, dictionaryFeature)
+    override def feature = using( wordFeature, bigramFeature, trigramFeature, ratingFeature,QuadgramFeature,dictionaryFeature)
   }
 }

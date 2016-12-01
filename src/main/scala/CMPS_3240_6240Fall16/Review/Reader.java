@@ -204,7 +204,7 @@ public class Reader {
             String index = Integer.toString(i);
 
             try {
-                File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/Review/Data/" + index + ".txt");
+                File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/Review/ReviewData/" + index + ".txt");
                 MovieDocument newDoc = new MovieDocument( newFile , label, lexicons);
                 docs.add(newDoc);
             }
