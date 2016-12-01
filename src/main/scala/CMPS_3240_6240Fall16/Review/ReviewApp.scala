@@ -38,7 +38,7 @@ object ReviewApp extends Logging {
 
   }
 
-  /** A standard method for testing the Review Classification problem. Simply training and testing the resulting model.*/
+  /** A standard method for testing the CMPS_3240_6240Fall16.Review Classification problem. Simply training and testing the resulting model.*/
   def TrainAndTestReviewClassifier(): Unit = {
     /** Defining the data and specifying it's location  */
     ReviewDataModel.docs populate trainData
@@ -46,14 +46,14 @@ object ReviewApp extends Logging {
     ReviewClassifier.test(testData)
   }
 
-  /** Review Classifcation, followd by caching the data-model graph. */
+  /** CMPS_3240_6240Fall16.Review Classifcation, followd by caching the data-model graph. */
   val graphCacheFile = "models/temp.model"
   def ReviewClassifierWithGraphCache(): Unit = {
     /** Defining the data and specifying it's location  */
     ReviewDataModel.docs populate trainData
     ReviewDataModel.deriveInstances()
     ReviewDataModel.write(graphCacheFile)
-    ReviewClassifierWithCache.learn(30)
+    ReviewClassifierWithCache.learn(500)
 
     ReviewClassifierWithCache.test(testData)
   }

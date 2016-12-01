@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by peterhriser on 10/4/16.
@@ -31,7 +32,7 @@ public class Reader {
      * 'NOTE THE DOCS TO LIST MAY NOTBE NECESSARY, MY CODE ALREADY RETURNS A LIST
      *
     * */
-    public ArrayList<Document> docs;
+    public ArrayList<MovieDocument> docs;
     public Reader(int start, int end, String label){
         docs = pull(start,end,label);
     }
@@ -161,17 +162,50 @@ public class Reader {
         return null;
     }
 
-    /**
+    private HashMap<String,Integer> readLexicon(String lexicon) {
+        File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/CMPS_3240_6240Fall16.Review" + lexicon + ".txt");
+        Path file = Paths.get("./src/main/scala/CMPS_3240_6240Fall16/CMPS_3240_6240Fall16.Review" + lexicon + ".txt");
+
+        HashMap<String, Integer> lexHash = new HashMap<>();
+
+        try (InputStream in = Files.newInputStream(file)) {
+            try (BufferedReader reader =
+                         new BufferedReader(new InputStreamReader(in))) {
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+
+                    String[] words = line.split("\\s+");
+
+                    for (String word : words) {
+                        lexHash.put(word, 1);
+
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lexHash;
+    }
+
+        /**
      *
      */
     public ArrayList pull(int start, int numDocs,String label){
-        ArrayList<Document> docs = new ArrayList<>();
+
+        ArrayList<MovieDocument> docs = new ArrayList<>();
+        HashMap<String,Integer> badHashLex = readLexicon("badLexicon");
+        HashMap<String,Integer> goodHashLex = readLexicon("goodLexicon");
+        HashMap[] lexicons = {goodHashLex,badHashLex};
         for (int i =  start; i <=  numDocs; i++) {
             String index = Integer.toString(i);
 
             try {
-                File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/Review/Data2/" + index + ".txt");
-                Document newDoc = new Document( newFile , label);
+                File newFile = new File("./src/main/scala/CMPS_3240_6240Fall16/Review/Data/" + index + ".txt");
+                MovieDocument newDoc = new MovieDocument( newFile , label, lexicons);
                 docs.add(newDoc);
             }
             catch (IOException e) {
@@ -199,7 +233,7 @@ public class Reader {
         String testReviewReader = reader.ReadReview("42555.txt");
         //THIS WILL GENERATE A TON OF DOCUMENTS, USE ONLY TO TEST MASE USAGE
         //ArrayList testPullHundred = reader.pullHundred("42555");
-        System.out.println("WordReader: " + "\n" + "Review Reader: " + testReviewReader);
+        System.out.println("WordReader: " + "\n" + "CMPS_3240_6240Fall16.Review Reader: " + testReviewReader);
     }
     **/
 

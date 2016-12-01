@@ -9,22 +9,22 @@ import CMPS_3240_6240Fall16.Review.ReviewDataModel._
 
 
 object ReviewClassifiers {
-  object ReviewClassifier extends Learnable[Document](docs) {
+  object ReviewClassifier extends Learnable[MovieDocument](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SparseNetworkLearner()
-    override def feature = using(wordFeature, bigramFeature, trigramFeature,QuadgramFeature ,ratingFeature)
+    override def feature = using( wordFeature, bigramFeature,ratingFeature,QuadgramFeature,dictionaryFeature)
   }
 
-  object ReviewClassifierWithCache extends Learnable[Document](docs) {
+  object ReviewClassifierWithCache extends Learnable[MovieDocument](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SparseNetworkLearner()
-    override def feature = using(wordFeature, bigramFeature, trigramFeature, QuadgramFeature, ratingFeature)
+    override def feature = using(wordFeature, bigramFeature,ratingFeature,QuadgramFeature,dictionaryFeature)
     override val useCache = true
   }
 
-  object DeserializedReviewClassifier extends Learnable[Document](docs) {
+  object DeserializedReviewClassifier extends Learnable[MovieDocument](docs) {
     def label = ReviewLabel
     override lazy val classifier = new SparseNetworkLearner()
-    override def feature = using(wordFeature, bigramFeature, trigramFeature,QuadgramFeature, ratingFeature)
+    override def feature = using(wordFeature, bigramFeature,QuadgramFeature,ratingFeature, dictionaryFeature)
   }
 }
