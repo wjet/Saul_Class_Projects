@@ -18,7 +18,7 @@ public class MovieDocument {
 	private final String label;
 	private final List<String> words;
 	private String guid;
-	private final  List<String> buzzwords= Arrays.asList("rating", "percent", "grade", "stars");
+	private final  List<String> buzzwords= Arrays.asList("rating", "Rating", "RATING", "rating:", "Rating:", "RATING:", "percent", "Percent", "PERCENT", "percent:", "PERCENT:", "Percent:", "grade", "GRADE", "Grade:", "grade:", "GRADE:", "Grade:",  "stars", "Stars", "STARS", "stars:", "Stars:", "STARS:");
     private final  List<String> buzzOwned = new ArrayList<>();
 	private String grade = "";
 	private int netGB = 0;

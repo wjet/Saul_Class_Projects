@@ -6,14 +6,18 @@ import edu.illinois.cs.cogcomp.saul.util.Logging
 import scala.collection.JavaConversions._
 
 object ReviewApp extends Logging {
-  val startTrainGood = 1
-  val startTrainBad = 101
-  val endTrainGood = 51
-  val endTrainBad =151
-  val startTestGood = 51
-  val startTestBad = 151
-  val endTestGood = 101
-  val endTestBad = 201
+  val startTrainGood = 20
+  val endTrainGood = 100
+
+  val startTestGood =0
+  val endTestGood = 20
+
+  val startTrainBad = 120
+  val endTrainBad =200
+
+  val startTestBad = 100
+  val endTestBad = 120
+
   val trainDataGood = new Reader(startTrainGood,endTrainGood,"GOOD").docs.toList
   val trainDataBad = new Reader(startTrainBad,endTrainBad,"BAD").docs.toList
   val trainData = trainDataGood ++ trainDataBad
@@ -42,7 +46,7 @@ object ReviewApp extends Logging {
   def TrainAndTestReviewClassifier(): Unit = {
     /** Defining the data and specifying it's location  */
     ReviewDataModel.docs populate trainData
-    ReviewClassifier.learn(500)
+    ReviewClassifier.learn(450)
     ReviewClassifier.test(testData)
   }
 
@@ -53,7 +57,7 @@ object ReviewApp extends Logging {
     ReviewDataModel.docs populate trainData
     ReviewDataModel.deriveInstances()
     ReviewDataModel.write(graphCacheFile)
-    ReviewClassifierWithCache.learn(500)
+    ReviewClassifierWithCache.learn(450)
 
     ReviewClassifierWithCache.test(testData)
   }
@@ -63,7 +67,7 @@ object ReviewApp extends Logging {
     */
   def ReviewClassifierFromCache() {
     ReviewDataModel.load(graphCacheFile)
-    ReviewClassifierWithCache.learn(500)
+    ReviewClassifierWithCache.learn(450)
 
     ReviewClassifierWithCache.test(testData)
   }
